@@ -22,6 +22,7 @@ var Ball = function (x,y,dx,dy,radius) {
     };
 // va cham voi canvas
     this.handleBallCollideBounce = function () {
+        // x - radius < 0 ( cạnh chạm biên )
         if (this.x < this.radius || this.x > canvas.width - this.radius) {
             this.dx = -this.dx;
         }
@@ -29,10 +30,4 @@ var Ball = function (x,y,dx,dy,radius) {
             this.dy = -this.dy;
         }
     };
-//va cham voi thanh ngang
-    this.handleBallCollidePaddle = function () {
-        if (this.x + this.radius >= paddle.x && this.x + this.radius <= paddle.x + paddle.width && this.y + this.radius >= paddle.y) {
-            this.dy = -this.dy;
-        }
-    };
-}
+};

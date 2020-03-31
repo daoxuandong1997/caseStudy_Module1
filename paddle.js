@@ -13,7 +13,7 @@ var Paddle = function (x,y,width,height,speed) {
         context.strokeStyle = 'black';
         context.fillStyle = 'blue';
         context.stroke();
-        context.fill()
+        context.fill();
         context.closePath();
     };
 // tao chuyển động paddle khi nhấn phím
@@ -32,4 +32,12 @@ var Paddle = function (x,y,width,height,speed) {
     };
 
 // xu ly phim bam thanh ngang paddle
-}
+    //va cham voi ball
+    this.handlePaddleCollideBall = function () {
+        if (ball.x + ball.radius >= this.x && ball.x + ball.radius <= this.x + this.width &&
+            ball.y + ball.radius >= this.y){
+            ball.dy = -ball.dy;
+        }
+    };
+
+};
