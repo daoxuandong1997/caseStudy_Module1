@@ -32,6 +32,9 @@ document.addEventListener('keydown', function (event) {
             playGame = !playGame;
             startGame();
             break;
+        case 32:
+            document.location.reload();
+            break;
     }
 });
 
@@ -51,38 +54,43 @@ function drawScore(size,x,y,maxWidth) {
     context.closePath()
 };
 
-function checkGameOver() {
-    if (ball.y > canvas.height - ball.radius){
-        lives--;
-        console.log(lives);
-        if(lives <= 0) {
-            isGameOver = true;
-        }
-        else {
-            ball.x = canvas.width/2;
-            ball.y = canvas.height - paddle.height - ball.radius;
-            ball.dx = 3;
-            ball.dy = 5;
-            paddle.x = (canvas.width - paddle.x/2)/2;
-        }
-    }
+function drawLives(){
     context.beginPath();
     context.fillStyle = "red";
     context.font = "25px Arial";
     context.fillText("Lives: " + lives, canvas.width - bricks.offsetX - 100, 50,100);
     context.closePath();
-}
+};
+
+function checkGameOver() {
+    if (ball.y > canvas.height - ball.radius - paddle.height) {
+        lives -= 1;
+        console.log(lives);
+        if (lives < 0) {
+            isGameOver = true;
+        } else {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height - paddle.height - ball.radius;
+            ball.dx = 3;
+            ball.dy = 5;
+            paddle.x = (canvas.width - paddle.x / 2) / 2;
+        }
+    }
+};
 
 function handleGameOver() {
     if (isGameWin){
         context.clearRect(0,0,canvas.width, canvas.height);
         alert ("You Win");
+        context.font = "100px Arial";
+        context.fillText("YOU WON !", canvas.width / 2 - 250, canvas.height / 2 ,500)
     }else {
         context.clearRect(0,0,canvas.width, canvas.height);
         alert ( "Game Over");
         drawScore(100,canvas.width/2 - 200, canvas.height/2,500);
     }
 }
+
 function startGame() {
     if (!isGameOver) {
         if (playGame) {
@@ -100,6 +108,7 @@ function startGame() {
             paddle.updatePaddlePosition();
 
             score();
+            drawLives();
 
             requestAnimationFrame(startGame);
 
