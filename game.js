@@ -37,24 +37,26 @@ document.addEventListener('keydown', function (event) {
 
 function score() {
     if (playerScore < maxScore) {
-        context.beginPath();
-        context.font = "25px Arial";
-        context.fillStyle = "blue";
-        context.fillText("Score: " + playerScore, 25,50,100);
-        context.closePath()
+        drawScore(25,25,50,100);
     }else{
         isGameOver = true;
         isGameWin = true;
     }
-}
+};
+function drawScore(size,x,y,maxWidth) {
+    context.beginPath();
+    context.font = size + "px Arial";
+    context.fillStyle = "blue";
+    context.fillText("Score: " + playerScore, x,y,maxWidth);
+    context.closePath()
+};
 
 function checkGameOver() {
     if (ball.y > canvas.height - ball.radius){
         lives--;
         console.log(lives);
         if(lives <= 0) {
-            alert("GAME OVER");
-            document.location.reload();
+            isGameOver = true;
         }
         else {
             ball.x = canvas.width/2;
@@ -78,6 +80,7 @@ function handleGameOver() {
     }else {
         context.clearRect(0,0,canvas.width, canvas.height);
         alert ( "Game Over");
+        drawScore(100,canvas.width/2 - 200, canvas.height/2,500);
     }
 }
 function startGame() {
