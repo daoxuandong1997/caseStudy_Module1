@@ -1,8 +1,8 @@
 var canvas = document.getElementById("game");
 var context = canvas.getContext("2d");
 
-var ball = new Ball(canvas.width/2, canvas.height - 20, 5, 3, 10);
-var paddle = new Paddle(canvas.width / 2 - 50, canvas.height - 10, 100, 10, 10 );
+var ball = new Ball(canvas.width/2, canvas.height - 100, 5, 3, 10);
+var paddle = new Paddle(canvas.width / 2 - 50, canvas.height - 90, 100, 10, 10 );
 var bricks = new Bricks(25,75,25,100,15,2,3);
 
 var isGameOver = false;
@@ -63,17 +63,17 @@ function drawLives(){
 };
 
 function checkGameOver() {
-    if (ball.y > canvas.height - ball.radius - paddle.height) {
-        lives -= 1;
+    if (ball.y > canvas.height - ball.radius ) {
+        lives --;
         console.log(lives);
         if (lives < 0) {
             isGameOver = true;
         } else {
             ball.x = canvas.width / 2;
-            ball.y = canvas.height - paddle.height - ball.radius;
+            ball.y = canvas.height - paddle.height - 2*ball.radius - 80;
             ball.dx = 3;
             ball.dy = 5;
-            paddle.x = (canvas.width - paddle.x / 2) / 2;
+            paddle.x = canvas.width/2 - 50;
         }
     }
 };
