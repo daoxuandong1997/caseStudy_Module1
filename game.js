@@ -9,6 +9,7 @@ var isGameOver = false;
 var isGameWin = false;
 var maxScore = (bricks.row * bricks.col);
 var playGame = false;
+var lives = 3;
 
 // khi nhấn xuống thanh ngang di chuyển ('key down')
 document.addEventListener('keyup', function (event) {
@@ -30,7 +31,6 @@ document.addEventListener('keydown', function (event) {
         case 13:
             playGame = !playGame;
             startGame();
-            console.log(playGame);
             break;
     }
 });
@@ -50,8 +50,25 @@ function score() {
 
 function checkGameOver() {
     if (ball.y > canvas.height - ball.radius){
-        isGameOver = true;
+        lives--;
+        console.log(lives);
+        if(lives <= 0) {
+            alert("GAME OVER");
+            document.location.reload();
+        }
+        else {
+            ball.x = canvas.width/2;
+            ball.y = canvas.height - paddle.height - ball.radius;
+            ball.dx = 3;
+            ball.dy = 5;
+            paddle.x = (canvas.width - paddle.x/2)/2;
+        }
     }
+    context.beginPath();
+    context.fillStyle = "red";
+    context.font = "25px Arial";
+    context.fillText("Lives: " + lives, canvas.width - bricks.offsetX - 100, 50,100);
+    context.closePath();
 }
 
 function handleGameOver() {
@@ -91,6 +108,7 @@ function startGame() {
         handleGameOver();
     };
 };
+
 function pauseGame() {
     context.clearRect(0, 0, canvas.width, canvas.height);
         ball.drawBall();
@@ -103,18 +121,3 @@ function pauseGame() {
     context.closePath();
 
 }
-
-context.beginPath();
-var grd1 = context.createLinearGradient(0,0,600,0);
-grd1.addColorStop(0,"red");
-grd1.addColorStop(1,"blue");
-context.fillStyle = grd1;
-context.font = "100px Arial";
-context.fillText("BOUNCING BALL", canvas.width / 2 - 200, canvas.height / 2 - 50,400);
-context.closePath();
-
-context.beginPath();
-context.fillStyle = "blue";
-context.font = "50px Arial";
-context.fillText("Nhấn nút Enter để chơi !", canvas.width / 2 - 250, canvas.height / 2 + 50,500);
-context.closePath();
