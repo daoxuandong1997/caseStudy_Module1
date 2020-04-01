@@ -1,4 +1,4 @@
-var Paddle = function (x,y,width,height,speed) {
+let Paddle = function (x,y,width,height,speed) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -33,11 +33,11 @@ var Paddle = function (x,y,width,height,speed) {
 
 // xu ly phim bam thanh ngang paddle
     //va cham voi ball
+    // chỗ này cẩn thận có bug to đùng !!!
     this.handlePaddleCollideBall = function () {
-        if (ball.x + ball.radius >= this.x && ball.x + ball.radius <= this.x + this.width &&
-            ball.y + ball.radius >= this.y){
+        if (ball.x + ball.radius >= this.x && ball.x - ball.radius <= this.x + this.width && // bóng hết lập bập nhầm < thành >
+            ball.y + ball.radius == this.y){
             ball.dy = -ball.dy;
         }
     };
-
 };

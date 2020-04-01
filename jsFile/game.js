@@ -1,16 +1,15 @@
-var canvas = document.getElementById("game");
-var context = canvas.getContext("2d");
+let canvas = document.getElementById("game");
+let context = canvas.getContext("2d");
 
-var ball = new Ball(canvas.width/2, canvas.height - 100, 5, 3, 10);
-var paddle = new Paddle(canvas.width / 2 - 50, canvas.height - 90, 100, 10, 10 );
-var bricks = new Bricks(25,75,25,100,15,2,3);
+let ball = new Ball(canvas.width/2, canvas.height - 100, 5, 3, 10);
+let paddle = new Paddle(canvas.width / 2 - 50, canvas.height - 90, 100, 10, 10 );
+let bricks = new Bricks(25,75,25,100,15,5,9);
 
-var isGameOver = false;
-var isGameWin = false;
-var maxScore = (bricks.row * bricks.col);
-var playGame = false;
-var reset = false;
-var lives = 3;
+let isGameOver = false;
+let isGameWin = false;
+let maxScore = (bricks.row * bricks.col);
+let playGame = false;
+let lives = 3;
 
 // khi nhấn xuống thanh ngang di chuyển ('key down')
 document.addEventListener('keyup', function (event) {
@@ -143,8 +142,8 @@ function pauseGame() {
         bricks.drawBricks();
     context.beginPath();
     context.fillStyle = "blue";
-    context.font = "100px Arial";
-    context.fillText("PAUSE - ENTER ĐỂ TIẾP TỤC CHƠI", canvas.width / 2 - 400, canvas.height / 2,800);
+    context.font = "75px Arial";
+    context.fillText("PAUSE - ENTER ĐỂ TIẾP TỤC CHƠI", canvas.width / 2 - 400, canvas.height / 2 + 50,800);
     context.closePath();
 
 }

@@ -1,4 +1,4 @@
-var Ball = function (x,y,dx,dy,radius) {
+let Ball = function (x,y,dx,dy,radius) {
     this.x = x;
     this.y = y;
     this.dx = dx;

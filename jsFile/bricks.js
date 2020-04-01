@@ -1,7 +1,7 @@
 // class cua tat ca cac vien gach
-var bricksList = [];
-var playerScore = 0;
-var Bricks = function (offsetX, offsetY, margin, width, height, row, col) {
+let bricksList = [];
+let playerScore = 0;
+let Bricks = function (offsetX, offsetY, margin, width, height, row, col) {
     this.offsetX = offsetX;
     this.offsetY = offsetY;
     this.margin = margin;
@@ -52,7 +52,6 @@ var Bricks = function (offsetX, offsetY, margin, width, height, row, col) {
                     ball.dy = -ball.dy;
                     b.isBroken = true;
                     playerScore += 1;
-                    console.log(playerScore);
                 }
             }
         })
