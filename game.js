@@ -9,14 +9,18 @@ var isGameOver = false;
 var isGameWin = false;
 var maxScore = (bricks.row * bricks.col);
 var playGame = false;
+var reset = false;
 var lives = 3;
 
 // khi nhấn xuống thanh ngang di chuyển ('key down')
 document.addEventListener('keyup', function (event) {
-    if (event.keyCode == 37) {
-        paddle.isMovingLeft = false;
-    } else if (event.keyCode == 39) {
-        paddle.isMovingRight = false;
+    switch (event.keyCode) {
+        case 37:
+            paddle.isMovingLeft = false;
+            break;
+        case 39:
+            paddle.isMovingRight = false;
+            break;
     }
 });
 // khi nhả phím thanh ngang ngừng ('key up')
@@ -32,9 +36,10 @@ document.addEventListener('keydown', function (event) {
             playGame = !playGame;
             startGame();
             break;
-        case 32:
-            document.location.reload();
-            break;
+        // case 32:
+        //     reset = true ;
+        //     // document.location.reload();
+        //     break;
     }
 });
 
@@ -84,10 +89,20 @@ function handleGameOver() {
         alert ("You Win");
         context.font = "100px Arial";
         context.fillText("YOU WON !", canvas.width / 2 - 250, canvas.height / 2 ,500)
+        document.addEventListener('keydown',function (event) {
+            if (event.keyCode == 32){
+                document.location.reload();
+            }
+        });
     }else {
         context.clearRect(0,0,canvas.width, canvas.height);
         alert ( "Game Over");
         drawScore(100,canvas.width/2 - 200, canvas.height/2,500);
+        document.addEventListener('keydown',function (event) {
+            if (event.keyCode == 32){
+                document.location.reload();
+            }
+        });
     }
 }
 
