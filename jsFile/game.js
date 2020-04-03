@@ -20,27 +20,6 @@ function draw(content,color,size,x,y,maxWidth) {
         context.closePath();
 }
 
-// let hitPaddleSound = new Sound("Paddle_ball_hit.mp3",true,"mygamesound");
-// let hitBrickSound = new Sound("sound/ball_hit_brick.mp3",true,"mygamesound");
-// let gameOverSound = new Sound("sound/game-over-sound-effect.mp3",true,"mygamesound");
-// let gameMusic = new Sound("sound/audio_odyssey.mp3",true,"bg_music");
-// let Sound = function(src) {
-//     this.sound = document.createElement("audio");
-//     this.sound.src = src;
-//     this.sound.setAttribute("preload", "auto");
-//     this.sound.setAttribute("controls", "none");
-//     this.sound.style.display = "none";
-//     document.body.appendChild(this.sound);
-//     this.play = function(){
-//         this.sound.play();
-//     }
-//     this.stop = function(){
-//         this.sound.pause();
-//     }
-// }
-
-// let scoreBoard = [];
-
 // khi nhả phím thanh ngang ngừng ('key up')
 document.addEventListener('keyup', function (event) {
         if (lv2 === 0) {
