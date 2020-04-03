@@ -6,6 +6,7 @@ let Paddle = function (x,y,width,height,speed) {
     this.speed = speed;
     this.isMovingLeft = false;
     this.isMovingRight = false;
+    this.reverse = false;
 //ve paddle
     this.drawPaddle = function () {
         context.beginPath();
@@ -34,9 +35,9 @@ let Paddle = function (x,y,width,height,speed) {
 // xu ly phim bam thanh ngang paddle
     //va cham voi ball
     // chỗ này cẩn thận có bug to đùng !!!
-    this.handlePaddleCollideBall = function () {
+    this.handlePaddleCollideBall = function (ball) {
         if (ball.x + ball.radius >= this.x && ball.x - ball.radius <= this.x + this.width && // bóng hết lập bập nhầm < thành >
-            ball.y + ball.radius == this.y){
+            ball.y + ball.radius === this.y){
             ball.dy = -ball.dy;
         }
     };

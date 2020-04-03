@@ -8,35 +8,47 @@
             border: 2px solid #eaeaea;
             background-color: lightblue;
         }
+        textarea{
+            font-family: "Times New Roman";
+            font-size: 15px;
+        }
     </style>
+
 </head>
 <body>
-<audio>
-    <source with="0" height="0" src="_audio_odyssey.mp3" autofocus="true" loop="true">
-</audio>
-<!--<button onclick="playAgain()">playAgain</button>-->
-<canvas id="game" width="1150" height="600"></canvas>
+
+<textarea cols="45" rows="39" readonly="readonly" disabled="border">
+
+    - Nhấn ENTER để play/pause game
+
+    - Nhấn SPACE để reset game
+
+    - Hướng dẫn: + Sử dụng phím di chuyển trái phải để điều khiển thanh ngang hứng bóng
+
+                 + Bạn có 3 mạng
+
+                 + Bóng đập vỡ hết gạch thì win.
+
+                 + Game có 2 level. ( cẩn thận level 2 khi đạt 10 điểm)
+
+    Chúc vui vẻ !
+</textarea>
+<canvas id="game" width="1150" height="695"></canvas>
+
 <script src="jsFile/ball.js"></script>
 <script src="jsFile/paddle.js"></script>
 <script src="jsFile/bricks.js"></script>
 <script src="jsFile/game.js"></script>
 <script>
-    context.beginPath();
     let grd1 = context.createLinearGradient(0,0,600,0);
     grd1.addColorStop(0,"red");
     grd1.addColorStop(1,"blue");
-    context.fillStyle = grd1;
-    context.font = "100px Arial";
-    context.fillText("BOUNCING BALL", canvas.width / 2 - 250, canvas.height / 2 - 50,500);
-    context.closePath();
 
-    context.beginPath();
-    context.fillStyle = "blue";
-    context.font = "50px Arial";
-    context.fillText("Nhấn nút Enter để chơi !", canvas.width / 2 - 250, canvas.height / 2 + 50,500);
-    context.closePath();
+    draw("BOUNCING BALL",grd1,100,canvas.width / 2 - 250, canvas.height / 2 - 50,500);
+    draw("Nhấn nút Enter để chơi !",grd1,50, canvas.width / 2 - 300, canvas.height / 2 + 50,800);
+
+    // let sound = new Sound("sound/audio_odyssey.mp3");
+    // sound.play()
 </script>
-<p> Nhấn ENTER để play/pause game</p>
-<p> Nhấn SPACE để reset game</p>
 </body>
 </html>

@@ -44,7 +44,7 @@ let Bricks = function (offsetX, offsetY, margin, width, height, row, col) {
         })
     };
 //va cham voi ball
-    this.handleBrickCollideBall = function() {
+    this.handleBrickCollideBall = function(ball) {
         bricksList.forEach(function (b) {
             if (!b.isBroken) {
                 if (ball.x >= b.x && ball.x <= b.x + b.width &&
@@ -57,4 +57,5 @@ let Bricks = function (offsetX, offsetY, margin, width, height, row, col) {
         })
     };
 };
+
 
